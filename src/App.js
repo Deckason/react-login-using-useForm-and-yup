@@ -6,10 +6,10 @@ import * as yup from "yup";
 function App() {
 
   const schema = yup.object().shape({
-    username: yup.string().min(3).required("Input required"),
+    username: yup.string().required("Input required").min(3, "Minimum of 3 characters"),
     email: yup.string().email().required("Input required"),
-    age: yup.number().positive().min(18).integer().required("Input required"),
-    password: yup.string().min(8).required("Input required"),
+    age: yup.number().typeError('Invalid input').positive().min(18,"Minimum age is 18").integer().required("Input required"),
+    password: yup.string().min(8,"Min of 8 characters").required("Input required"),
     confirmPassword: yup.string().oneOf([yup.ref("password"), null]).required("Input required")
   });
 
